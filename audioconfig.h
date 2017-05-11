@@ -1,0 +1,10 @@
+#ifndef AUDIOCONFIG_H
+#define AUDIOCONFIG_H
+
+#define DEFAULT_FRAME_SIZE (4096*8)
+//#define SAMPLING_RATE (22500)
+#define SAMPLING_RATE (48000)
+#define NUMBER_OF_CHANNELS (2)
+#define BYTES_PER_SAMPLE (2)
+
+#endif
