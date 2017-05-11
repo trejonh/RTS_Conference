@@ -20,7 +20,7 @@
 #include <opencv2/opencv.hpp>
 
 using namespace std;
-
+using namespace cv;
 Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort, int secondsToCapture){
 	isPaused = true;
 	run = false;
@@ -97,7 +97,7 @@ void Client::CaptureAudio(){
 
 		// Capture from the soundcard
 		in.read(buffer);
-		int n = write(sockfd,buffer,bufferSize);
+		n = write(sockfd,buffer,bufferSize);
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
@@ -142,7 +142,7 @@ void Client::CaptureVideo(){
 	    capture.set(CV_CAP_PROP_FRAME_WIDTH,1920);   // width pixels
 	    capture.set(CV_CAP_PROP_FRAME_HEIGHT,1080);   // height pixels
 	    capture.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
-	    if(!capture->isOpened()){   // connect to the camera
+	    if(!capture.isOpened()){   // connect to the camera
 	       cout << "Failed to connect to the camera.\n Exiting thread now" << endl;
 	       run = false;
 	    }
@@ -154,7 +154,7 @@ void Client::CaptureVideo(){
 		frame = frame.reshape(0,1);
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
-		int n = write(sockfd,frame.data,imgSize);
+		n = write(sockfd,frame.data,imgSize);
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
