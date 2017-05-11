@@ -9,13 +9,14 @@
 #define CLIENT_HPP_
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <thread>
+using namespace std;
 /**
  * @description Client will send live audio and video data to server
  */
 class Client{
 public:
-	Client();
+	Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort, int secondsToCapture);
 	~Client();
 	void Stream();
 	void Stop();
@@ -23,8 +24,16 @@ public:
 	void Resume();
 private:
 	bool isPaused;
-	//void
+	bool run;
+	char *audioDevice;
+	char *serverAddr;
+	int audioPort;
+	int videoPort;
+	int secondsToCapture;
+	std::thread audioThread;
+	std::thread videoThread;
 	void CaptureAudio();
+	void CaptureVideo();
 };
 
 #endif /* CLIENT_HPP_ */
