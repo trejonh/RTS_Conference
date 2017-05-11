@@ -30,8 +30,8 @@ private:
 	int audioPort;
 	int videoPort;
 	int secondsToCapture;
-	std::thread audioThread;
-	std::thread videoThread;
+	std::thread *audioThread;
+	std::thread *videoThread;
 	void CaptureAudio();
 	void CaptureVideo();
 };

@@ -110,7 +110,7 @@ void Client::CaptureAudio(){
 	in.close();
 	if(sockfd >= 0)
 		close(sockfd);
-	delete(in);
+	//delete(in);
 }
 void Client::CaptureVideo(){
 
@@ -159,5 +159,5 @@ void Client::CaptureVideo(){
 			cout<<"error writing to socket\n";
 		}
 	}
-	    delete(capture);
+	    //delete(capture);
 }
