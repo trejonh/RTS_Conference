@@ -151,7 +151,7 @@ void Client::CaptureVideo(){
 		if(isPaused)
 			continue;
 		capture >> frame;
-		frame = frame.reshape(0,1);
+		//frame = frame.reshape(0,1);
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
 		n = write(sockfd,frame.data,imgSize);
