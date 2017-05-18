@@ -6,19 +6,16 @@
 CPP_SRCS += \
 ../AudioInterface.cpp \
 ../Client.cpp \
-../ClientAudio.cpp \
 ../main.cpp 
 
 OBJS += \
 ./AudioInterface.o \
 ./Client.o \
-./ClientAudio.o \
 ./main.o 
 
 CPP_DEPS += \
 ./AudioInterface.d \
 ./Client.d \
-./ClientAudio.d \
 ./main.d 
 
 
