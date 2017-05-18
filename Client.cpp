@@ -137,6 +137,13 @@ void Client::CaptureVideo(){
 		         (char *)&serv_addr.sin_addr.s_addr,
 		         server->h_length);
 		    serv_addr.sin_port = htons(portno);
+		    // Convert IPv4 and IPv6 addresses from text to binary form
+
+		        if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+		        {
+		            printf("\nConnection Failed \n");
+		            run = false;
+		        }
 		/************************************/
 		    cout << "trying to open camera"<<endl;
 	VideoCapture capture(0);
