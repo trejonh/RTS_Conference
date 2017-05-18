@@ -178,9 +178,8 @@ void Client::CaptureVideo(){
 			continue;
 	    cout << "capturing"<<endl;
 		capture >> frame;
-		frame = (frame.reshape(0,1)); // to make it continuous
 	    cout << "frame captured"<<endl;
-		//frame = frame.reshape(0,1);
+		frame = (frame.reshape(0,1));
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
 		cout << sizeof(frame.data) <<endl;
