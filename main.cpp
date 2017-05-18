@@ -16,7 +16,7 @@ int main(int argc, char** argv){
 		cout << "Usage: <AppName> <Audio Recorder Hardware> <Audio Port> <Video Port>" << endl;
 		exit(-1);
 	}
-	Client client(argv[1],argv[2],atoi(argv[3]),atoi(argv[4]),20);
+	Client client(argv[1],argv[2],atoi(argv[3]),atoi(argv[4]));
 	client.Stream();
 	cout << "enter 0 to stop stream"<<endl;
 	int input = -1;

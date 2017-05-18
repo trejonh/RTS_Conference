@@ -22,7 +22,7 @@
 
 using namespace std;
 using namespace cv;
-Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort, int secondsToCapture){
+Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort){
 	isPaused = true;
 	run = false;
 	this->audioDevice = audioDevice;
@@ -89,7 +89,7 @@ void Client::CaptureAudio(){
 	        run = false;
 	    }
 
-	int bytesToCapture = SAMPLING_RATE * secondsToCapture * NUMBER_OF_CHANNELS * BYTES_PER_SAMPLE;
+	//int bytesToCapture = SAMPLING_RATE * secondsToCapture * NUMBER_OF_CHANNELS * BYTES_PER_SAMPLE;
 	while(run){
 		if(isPaused)
 			continue;
@@ -104,7 +104,7 @@ void Client::CaptureAudio(){
 		// Write to the file.
 		//rc = write(filedesc, buffer, bufferSize);
 
-		bytesToCapture-=bufferSize;
+		//bytesToCapture-=bufferSize;
 
 	}
 	in.close();
