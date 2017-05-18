@@ -36,7 +36,7 @@ void Client::Stream(){
 	run = true;
 	isPaused = false;
 	videoThread = new thread(&Client::CaptureVideo, this);
-	//audioThread = new thread(&Client::CaptureAudio, this);
+	audioThread = new thread(&Client::CaptureAudio, this);
 }
 void Client::Stop(){
 	run = false;
