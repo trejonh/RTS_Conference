@@ -17,6 +17,7 @@
 #include <netdb.h>
 #include <iostream>
 #include <thread>
+#include <pthread.h>
 #include <opencv2/opencv.hpp>
 
 using namespace std;
@@ -75,7 +76,6 @@ void Client::CaptureAudio(){
 	/*************Audio Setup************/
 	char *buffer;
 	int bufferSize;
-	int secondsToCapture;
 	AudioInterface in(audioDevice, SAMPLING_RATE, NUMBER_OF_CHANNELS, SND_PCM_STREAM_PLAYBACK);
 	in.open();
 	bufferSize = in.getRequiredBufferSize();

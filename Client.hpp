@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <thread>
+#include <pthread.h>
 using namespace std;
 /**
  * @description Client will send live audio and video data to server
@@ -30,8 +31,8 @@ private:
 	int audioPort;
 	int videoPort;
 	int secondsToCapture;
-	std::thread *audioThread;
-	std::thread *videoThread;
+	thread *audioThread;
+	thread *videoThread;
 	void CaptureAudio();
 	void CaptureVideo();
 };
