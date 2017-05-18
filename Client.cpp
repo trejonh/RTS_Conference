@@ -71,6 +71,12 @@ void Client::CaptureAudio(){
 		         (char *)&serv_addr.sin_addr.s_addr,
 		         server->h_length);
 		    serv_addr.sin_port = htons(portno);
+
+	        if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+	        {
+	            printf("\nConnection Failed \n");
+	            run = false;
+	        }
 		/************************************/
 
 	/*************Audio Setup************/
@@ -165,6 +171,9 @@ void Client::CaptureVideo(){
 		//frame = frame.reshape(0,1);
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
+		cout << sizeof(frame.data) <<endl;
+		cout << imgSize <<endl;
+
 		n = write(sockfd,frame.data,imgSize);
 		if(n<0){
 			cout<<"error writing to socket\n";

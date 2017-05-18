@@ -21,9 +21,9 @@ int main(int argc, char** argv){
 	cout << "enter 0 to stop stream"<<endl;
 	int input = -1;
 	while(1){
-		//cin >> input;
-		//if(input==45)
-			//return 0;
+		cin >> input;
+		if(input==0)
+			break;
 	}
 	client.Stop();
 	return 0;
