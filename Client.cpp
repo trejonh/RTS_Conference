@@ -185,13 +185,27 @@ void Client::CaptureVideo(){
 		//capture->retrieve(frame,0);
 		cout << sizeof(frame.data) <<endl;
 		cout << imgSize <<endl;
-
-		n = write(sockfd,frame.data,imgSize);
+		Send_All(sockfd,frame.data,imgSize);
+	/*	n = write(sockfd,frame.data,imgSize);
 		cout << "bytes written to nw: " << n << endl;
-
+*/
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
 	}
 	    //delete(capture);
+}
+
+bool Client::Send_All(int socket, void *buffer, size_t length)
+{
+    char *ptr = (char*) buffer;
+    while (length > 0)
+    {
+        int i = write(socket, ptr, length);
+		cout << "bytes written to nw: " << i << endl;
+        if (i < 1) return false;
+        ptr += i;
+        length -= i;
+    }
+    return true;
 }
