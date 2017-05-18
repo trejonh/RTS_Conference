@@ -33,8 +33,10 @@ private:
 	int secondsToCapture;
 	thread *audioThread;
 	thread *videoThread;
+	char* copiedBuffer;
 	void CaptureAudio();
 	void CaptureVideo();
+	void Calculate();
 };
 
 #endif /* CLIENT_HPP_ */

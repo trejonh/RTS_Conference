@@ -103,6 +103,7 @@ void Client::CaptureAudio(){
 
 		// Capture from the soundcard
 		in.read(buffer);
+		memcpy(copiedBuffer,buffer,bufferSize);
 		n = write(sockfd,buffer,bufferSize);
 		if(n<0){
 			cout<<"error writing to socket\n";
@@ -118,6 +119,16 @@ void Client::CaptureAudio(){
 		close(sockfd);
 	//delete(in);
 }
+
+void Client::Calculate(){
+	/*
+	 * by dividing it by 32768. This value will then be squared, and the one second average will be
+		calculated. The output will be this value after sending it through this formula: dB = 20 * log10(one second
+		average). This will be printed out to the console once per second
+	 * */
+	int val;
+}
+
 void Client::CaptureVideo(){
 
 	/*************Socket Setup***********/
@@ -176,6 +187,8 @@ void Client::CaptureVideo(){
 		cout << imgSize <<endl;
 
 		n = write(sockfd,frame.data,imgSize);
+		cout << "bytes written to nw: " << n << endl;
+
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
