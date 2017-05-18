@@ -194,17 +194,3 @@ void Client::CaptureVideo(){
 	}
 	    //delete(capture);
 }
-
-bool Client::Send_All(int socket, void *buffer, int length)
-{
-    char *ptr = (char*) buffer;
-    while (length > 0)
-    {
-        int i = write(socket, ptr, length);
-		cout << "bytes written to nw: " << i << endl;
-        if (i < 1) return false;
-        ptr += i;
-        length -= i;
-    }
-    return true;
-}
