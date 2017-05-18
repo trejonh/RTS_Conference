@@ -148,11 +148,13 @@ void Client::CaptureVideo(){
 	       run = false;
 	    }
 		Mat frame;
-	    cout << "capturing"<<endl;
+	    cout << "entering loop"<<endl;
 	while(run){
 		if(isPaused)
 			continue;
+	    cout << "capturing"<<endl;
 		capture >> frame;
+	    cout << "frame captured"<<endl;
 		//frame = frame.reshape(0,1);
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
