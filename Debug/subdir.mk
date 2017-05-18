@@ -6,17 +6,20 @@
 CPP_SRCS += \
 ../AudioInterface.cpp \
 ../Client.cpp \
-../ClientAudio.cpp 
+../ClientAudio.cpp \
+../main.cpp 
 
 OBJS += \
 ./AudioInterface.o \
 ./Client.o \
-./ClientAudio.o 
+./ClientAudio.o \
+./main.o 
 
 CPP_DEPS += \
 ./AudioInterface.d \
 ./Client.d \
-./ClientAudio.d 
+./ClientAudio.d \
+./main.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
