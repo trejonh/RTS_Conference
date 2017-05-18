@@ -185,10 +185,9 @@ void Client::CaptureVideo(){
 		//capture->retrieve(frame,0);
 		cout << sizeof(frame.data) <<endl;
 		cout << imgSize <<endl;
-		Send_All(sockfd,frame.data,imgSize);
-	/*	n = write(sockfd,frame.data,imgSize);
+		//Send_All(sockfd,frame.data,imgSize);
+	n = write(sockfd,frame.data,imgSize);
 		cout << "bytes written to nw: " << n << endl;
-*/
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
