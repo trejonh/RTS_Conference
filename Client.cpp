@@ -85,7 +85,7 @@ void Client::CaptureAudio(){
 	        cout<<"ERROR connecting"<<endl;
 			in.close();
 			if(sockfd >=0)
-	        close(sockfd);
+				close(sockfd);
 	        run = false;
 	    }
 
@@ -138,6 +138,7 @@ void Client::CaptureVideo(){
 		         server->h_length);
 		    serv_addr.sin_port = htons(portno);
 		/************************************/
+		    cout << "trying to open camera"<<endl;
 	VideoCapture capture(0);
 	    capture.set(CV_CAP_PROP_FRAME_WIDTH,1920);   // width pixels
 	    capture.set(CV_CAP_PROP_FRAME_HEIGHT,1080);   // height pixels
@@ -147,6 +148,7 @@ void Client::CaptureVideo(){
 	       run = false;
 	    }
 		Mat frame;
+	    cout << "capturing"<<endl;
 	while(run){
 		if(isPaused)
 			continue;
