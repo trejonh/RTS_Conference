@@ -164,8 +164,8 @@ void Client::CaptureVideo(){
 		/************************************/
 		    cout << "trying to open camera"<<endl;
 	VideoCapture capture(0);
-	    capture.set(CV_CAP_PROP_FRAME_WIDTH,1920);   // width pixels
-	    capture.set(CV_CAP_PROP_FRAME_HEIGHT,1080);   // height pixels
+	    capture.set(CV_CAP_PROP_FRAME_WIDTH,800);   // width pixels
+	    capture.set(CV_CAP_PROP_FRAME_HEIGHT,600);   // height pixels
 	    capture.set(CV_CAP_PROP_GAIN, 0);            // Enable auto gain etc.
 	    if(!capture.isOpened()){   // connect to the camera
 	       cout << "Failed to connect to the camera.\n Exiting thread now" << endl;
