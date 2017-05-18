@@ -22,7 +22,7 @@ int main(int argc, char** argv){
 	int input = -1;
 	while(1){
 		cin >> input;
-		if(input==0)
+		if(input==45)
 			return 0;
 	}
 	return 0;
