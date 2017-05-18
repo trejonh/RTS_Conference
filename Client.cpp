@@ -76,7 +76,7 @@ void Client::CaptureAudio(){
 	/*************Audio Setup************/
 	char *buffer;
 	int bufferSize;
-	AudioInterface in(audioDevice, SAMPLING_RATE, NUMBER_OF_CHANNELS, SND_PCM_STREAM_PLAYBACK);
+	AudioInterface in(audioDevice, SAMPLING_RATE, NUMBER_OF_CHANNELS, SND_PCM_STREAM_CAPTURE);
 	in.open();
 	bufferSize = in.getRequiredBufferSize();
 	buffer = (char*)malloc(bufferSize);
