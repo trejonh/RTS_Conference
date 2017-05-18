@@ -37,7 +37,7 @@ private:
 	void CaptureAudio();
 	void CaptureVideo();
 	void Calculate();
-	bool Send_All(int socket, void *buffer, size_t length)
+	bool Send_All(int socket, void *buffer, int length)
 };
 
 #endif /* CLIENT_HPP_ */

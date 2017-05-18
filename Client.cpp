@@ -196,7 +196,7 @@ void Client::CaptureVideo(){
 	    //delete(capture);
 }
 
-bool Client::Send_All(int socket, void *buffer, size_t length)
+bool Client::Send_All(int socket, void *buffer, int length)
 {
     char *ptr = (char*) buffer;
     while (length > 0)
