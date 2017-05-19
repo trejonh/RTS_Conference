@@ -162,7 +162,7 @@ void Client::CaptureAudio(){
 	in.close();
 	if(sockfd >= 0)
 		close(sockfd);
-	delete(in);
+	//delete(in);
 	calculationThread.join();
 	//delete(in);
 }
