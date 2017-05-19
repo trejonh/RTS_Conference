@@ -18,7 +18,7 @@ using namespace std;
  */
 class Client{
 public:
-	Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort);
+	Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort, int seconds);
 	~Client();
 	void Stream();
 	void Stop();
@@ -29,6 +29,7 @@ private:
 	bool run;
 	char *audioDevice;
 	char *serverAddr;
+	int secondsToPlay;
 	int audioPort;
 	int videoPort;
 	int secondsToCapture;

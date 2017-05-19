@@ -12,19 +12,11 @@
 using namespace std;
 
 int main(int argc, char** argv){
-	if(argc != 5){
+	if(argc != 6){
 		cout << "Usage: <AppName> <Audio Recorder Hardware> <Server Address> <Audio Port> <Video Port> <Capture Time>" << endl;
 		exit(-1);
 	}
-	Client client(argv[1],argv[2],atoi(argv[3]),atoi(argv[4]));
+	Client client(argv[1],argv[2],atoi(argv[3]),atoi(argv[4]),atoi(argv[5]));
 	client.Stream();
-	cout << "enter 0 to stop stream"<<endl;
-	int input = -1;
-	while(1){
-		cin >> input;
-		if(input==0)
-			break;
-	}
-	client.Stop();
 	return 0;
 }

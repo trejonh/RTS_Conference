@@ -33,15 +33,16 @@ using namespace cv;
  * @param serverAddr - the server address
  * @param audioPort - the port the server will listen for audio on
  * @param videoPort - the port the server will listen for video on
+ * @param seconds - the seconds to play stream
  **/
-Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort){
+Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort, int seconds){
 	isPaused = true;
 	run = false;
 	this->audioDevice = audioDevice;
 	this->serverAddr = serverAddr;
 	this->audioPort = audioPort;
 	this->videoPort = videoPort;
-	this->secondsToCapture = secondsToCapture;
+	this->secondsToPlay = seconds;
 }
 
 /**
@@ -55,13 +56,20 @@ Client::~Client(){
 }
 
 /**
- * Spawns up a video and audio thread and starts streaming to the server
+ * Spawns up a video and audio thread and starts streaming to the server for set time frame
  **/
 void Client::Stream(){
 	run = true;
 	isPaused = false;
 	videoThread = new thread(&Client::CaptureVideo, this);
 	audioThread = new thread(&Client::CaptureAudio, this);
+	clock_t startTime = clock();
+	while(run){
+		//give extra 2 seconds for thread spawing and setup
+		if((clock() - startTime) / CLOCKS_PER_SEC >= secondsToPlay + 2)
+			Stop();
+	}
+
 }
 
 /**
