@@ -147,16 +147,10 @@ void Client::CaptureAudio(){
 		// Capture from the soundcard
 		in.read(audioBuffer);
 		n = write(sockfd,audioBuffer,audioBufferSize);
-		cout << "buffer size: "<<audioBufferSize<<endl;
 		bufferMutex->unlock();
-		cout << "sent "<<n<<" bytes of audio"<<endl;
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
-		// Write to the file.
-		//rc = write(filedesc, buffer, bufferSize);
-
-		//bytesToCapture-=bufferSize;
 
 	}
 	in.close();
@@ -246,21 +240,16 @@ void Client::CaptureVideo(){
 	       run = false;
 	    }
 		Mat frame;
-	    cout << "entering loop"<<endl;
 	while(run){
 		if(isPaused)
 			continue;
-	    cout << "capturing"<<endl;
 		capture >> frame;
 	    cout << "frame captured"<<endl;
 		frame = (frame.reshape(0,1));
 		int imgSize =  frame.total()*frame.elemSize();
 		//capture->retrieve(frame,0);
-		cout << sizeof(frame.data) <<endl;
-		cout << imgSize <<endl;
 		//Send_All(sockfd,frame.data,imgSize);
 	n = write(sockfd,frame.data,imgSize);
-		cout << "bytes written to nw: " << n << endl;
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
