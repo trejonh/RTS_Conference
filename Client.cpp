@@ -178,7 +178,7 @@ void Client::Calculate(){
 		if((clock() - startTime) / CLOCKS_PER_SEC < secondsToDelay){
 			bufferMutex->lock();
 			for(int i = 0; i<audioBufferSize; i++){
-				totalSamplesInMin += audioBuffer[i]/32768;
+				totalSamplesInMin +=  (audioBuffer[i]/32768)*(audioBuffer[i]/32768);
 				count++;
 			}
 			bufferMutex->unlock();
