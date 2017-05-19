@@ -93,8 +93,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a19bf7c28f8209a472d700cdc6278e84e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a19bf7c28f8209a472d700cdc6278e84e">Client</a> (char *audioDevice, char *serverAddr, int audioPort, int videoPort)</td></tr>
-<tr class="separator:a19bf7c28f8209a472d700cdc6278e84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8438800e1a1a3e4af897d63f93dc21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#aae8438800e1a1a3e4af897d63f93dc21">Client</a> (char *audioDevice, char *serverAddr, int audioPort, int videoPort, int seconds)</td></tr>
+<tr class="separator:aae8438800e1a1a3e4af897d63f93dc21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840e519ca781888cbd54181572ebe3a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a840e519ca781888cbd54181572ebe3a7">~Client</a> ()</td></tr>
 <tr class="separator:a840e519ca781888cbd54181572ebe3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f12baa525b0c93000569172ff6ae3fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClient.html#a6f12baa525b0c93000569172ff6ae3fa">Stream</a> ()</td></tr>
@@ -109,7 +109,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classClient.html">Client</a> can send live audio and video data to a specified server </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a19bf7c28f8209a472d700cdc6278e84e"></a>
+<a class="anchor" id="aae8438800e1a1a3e4af897d63f93dc21"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -135,7 +135,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>videoPort</em>&#160;</td>
+          <td class="paramname"><em>videoPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seconds</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -150,6 +156,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">serverAddr</td><td>- the server address </td></tr>
     <tr><td class="paramname">audioPort</td><td>- the port the server will listen for audio on </td></tr>
     <tr><td class="paramname">videoPort</td><td>- the port the server will listen for video on </td></tr>
+    <tr><td class="paramname">seconds</td><td>- the seconds to play stream </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,7 +240,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Spawns up a video and audio thread and starts streaming to the server </p>
+<p>Spawns up a video and audio thread and starts streaming to the server for set time frame </p>
 
 </div>
 </div>
@@ -244,7 +251,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 19 2017 05:37:22 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 19 2017 09:08:36 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

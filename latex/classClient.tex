@@ -8,7 +8,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classClient_a19bf7c28f8209a472d700cdc6278e84e}{Client} (char $\ast$audio\+Device, char $\ast$server\+Addr, int audio\+Port, int video\+Port)
+\hyperlink{classClient_aae8438800e1a1a3e4af897d63f93dc21}{Client} (char $\ast$audio\+Device, char $\ast$server\+Addr, int audio\+Port, int video\+Port, int seconds)
 \item 
 \hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{$\sim$\+Client} ()
 \item 
@@ -26,16 +26,17 @@ void \hyperlink{classClient_a0d0f4a1317a31aca618d318c49648dd4}{Resume} ()
 \hyperlink{classClient}{Client} can send live audio and video data to a specified server 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classClient_a19bf7c28f8209a472d700cdc6278e84e}{\index{Client@{Client}!Client@{Client}}
+\hypertarget{classClient_aae8438800e1a1a3e4af897d63f93dc21}{\index{Client@{Client}!Client@{Client}}
 \index{Client@{Client}!Client@{Client}}
 \subsubsection[{Client}]{\setlength{\rightskip}{0pt plus 5cm}Client\+::\+Client (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{audio\+Device, }
 \item[{char $\ast$}]{server\+Addr, }
 \item[{int}]{audio\+Port, }
-\item[{int}]{video\+Port}
+\item[{int}]{video\+Port, }
+\item[{int}]{seconds}
 \end{DoxyParamCaption}
-)}}\label{classClient_a19bf7c28f8209a472d700cdc6278e84e}
+)}}\label{classClient_aae8438800e1a1a3e4af897d63f93dc21}
 Creates a client object to be used for audio/video streaming 
 \begin{DoxyParams}{Parameters}
 {\em audio\+Device} & -\/ name of audio device to record from \\
@@ -45,6 +46,8 @@ Creates a client object to be used for audio/video streaming
 {\em audio\+Port} & -\/ the port the server will listen for audio on \\
 \hline
 {\em video\+Port} & -\/ the port the server will listen for video on \\
+\hline
+{\em seconds} & -\/ the seconds to play stream \\
 \hline
 \end{DoxyParams}
 \hypertarget{classClient_a840e519ca781888cbd54181572ebe3a7}{\index{Client@{Client}!````~Client@{$\sim$\+Client}}
@@ -85,7 +88,7 @@ Stops streaming video and audio, N\+O\+T\+E\+: Cannot be resumed must call \hype
 {}
 \end{DoxyParamCaption}
 )}}\label{classClient_a6f12baa525b0c93000569172ff6ae3fa}
-Spawns up a video and audio thread and starts streaming to the server 
+Spawns up a video and audio thread and starts streaming to the server for set time frame 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
