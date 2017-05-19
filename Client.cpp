@@ -144,7 +144,9 @@ void Client::CaptureAudio(){
 		// Capture from the soundcard
 		in.read(audioBuffer);
 		n = write(sockfd,audioBuffer,audioBufferSize);
+		cout << "buffer size: "+audioBufferSize<<endl;
 		bufferMutex->unlock();
+		cout << "sent "+n+" bytes of audio"<<endl;
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
