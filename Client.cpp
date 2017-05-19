@@ -49,8 +49,8 @@ Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort)
  **/
 Client::~Client(){
 	run = false;
-	videoThread.join();
-	audioThread.join();
+	videoThread->join();
+	audioThread->join();
 	delete(audioBuffer);
 }
 
@@ -267,7 +267,6 @@ void Client::CaptureVideo(){
 	}
 	close(sockfd);
 	capture.release();
-	delete(capture);
 	    //delete(capture);
 }
 
