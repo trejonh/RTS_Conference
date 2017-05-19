@@ -49,6 +49,9 @@ Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort)
  **/
 Client::~Client(){
 	run = false;
+	videoThread.join();
+	audioThread.join();
+	delete(audioBuffer);
 }
 
 /**
@@ -159,6 +162,8 @@ void Client::CaptureAudio(){
 	in.close();
 	if(sockfd >= 0)
 		close(sockfd);
+	delete(in);
+	calculationThread.join();
 	//delete(in);
 }
 
@@ -260,6 +265,9 @@ void Client::CaptureVideo(){
 			cout<<"error writing to socket\n";
 		}
 	}
+	close(sockfd);
+	capture.release();
+	delete(capture);
 	    //delete(capture);
 }
 
