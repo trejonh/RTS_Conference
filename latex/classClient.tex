@@ -1,0 +1,93 @@
+\hypertarget{classClient}{\section{Client Class Reference}
+\label{classClient}\index{Client@{Client}}
+}
+
+
+{\ttfamily \#include $<$Client.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classClient_a19bf7c28f8209a472d700cdc6278e84e}{Client} (char $\ast$audio\+Device, char $\ast$server\+Addr, int audio\+Port, int video\+Port)
+\item 
+\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{$\sim$\+Client} ()
+\item 
+void \hyperlink{classClient_a6f12baa525b0c93000569172ff6ae3fa}{Stream} ()
+\item 
+void \hyperlink{classClient_a1dd85fbf24f35fd0c08608b34f54e4b2}{Stop} ()
+\item 
+void \hyperlink{classClient_ad7191a4668bb5cee1c9475ff6c8b60d8}{Pause} ()
+\item 
+void \hyperlink{classClient_a0d0f4a1317a31aca618d318c49648dd4}{Resume} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classClient}{Client} can send live audio and video data to a specified server 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classClient_a19bf7c28f8209a472d700cdc6278e84e}{\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\subsubsection[{Client}]{\setlength{\rightskip}{0pt plus 5cm}Client\+::\+Client (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{audio\+Device, }
+\item[{char $\ast$}]{server\+Addr, }
+\item[{int}]{audio\+Port, }
+\item[{int}]{video\+Port}
+\end{DoxyParamCaption}
+)}}\label{classClient_a19bf7c28f8209a472d700cdc6278e84e}
+Creates a client object to be used for audio/video streaming 
+\begin{DoxyParams}{Parameters}
+{\em audio\+Device} & -\/ name of audio device to record from \\
+\hline
+{\em server\+Addr} & -\/ the server address \\
+\hline
+{\em audio\+Port} & -\/ the port the server will listen for audio on \\
+\hline
+{\em video\+Port} & -\/ the port the server will listen for video on \\
+\hline
+\end{DoxyParams}
+\hypertarget{classClient_a840e519ca781888cbd54181572ebe3a7}{\index{Client@{Client}!````~Client@{$\sim$\+Client}}
+\index{````~Client@{$\sim$\+Client}!Client@{Client}}
+\subsubsection[{$\sim$\+Client}]{\setlength{\rightskip}{0pt plus 5cm}Client\+::$\sim$\+Client (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClient_a840e519ca781888cbd54181572ebe3a7}
+Stops threads in case not previously stopped and cleans up 
+
+\subsection{Member Function Documentation}
+\hypertarget{classClient_ad7191a4668bb5cee1c9475ff6c8b60d8}{\index{Client@{Client}!Pause@{Pause}}
+\index{Pause@{Pause}!Client@{Client}}
+\subsubsection[{Pause}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+::\+Pause (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClient_ad7191a4668bb5cee1c9475ff6c8b60d8}
+Pauses the stream \hypertarget{classClient_a0d0f4a1317a31aca618d318c49648dd4}{\index{Client@{Client}!Resume@{Resume}}
+\index{Resume@{Resume}!Client@{Client}}
+\subsubsection[{Resume}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+::\+Resume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClient_a0d0f4a1317a31aca618d318c49648dd4}
+Resumes the stream \hypertarget{classClient_a1dd85fbf24f35fd0c08608b34f54e4b2}{\index{Client@{Client}!Stop@{Stop}}
+\index{Stop@{Stop}!Client@{Client}}
+\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+::\+Stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClient_a1dd85fbf24f35fd0c08608b34f54e4b2}
+Stops streaming video and audio, N\+O\+T\+E\+: Cannot be resumed must call \hyperlink{classClient_a6f12baa525b0c93000569172ff6ae3fa}{Stream()} \hypertarget{classClient_a6f12baa525b0c93000569172ff6ae3fa}{\index{Client@{Client}!Stream@{Stream}}
+\index{Stream@{Stream}!Client@{Client}}
+\subsubsection[{Stream}]{\setlength{\rightskip}{0pt plus 5cm}void Client\+::\+Stream (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClient_a6f12baa525b0c93000569172ff6ae3fa}
+Spawns up a video and audio thread and starts streaming to the server 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Client.\+hpp\item 
+Client.\+cpp\end{DoxyCompactItemize}

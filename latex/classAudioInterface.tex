@@ -1,0 +1,114 @@
+\hypertarget{classAudioInterface}{\section{Audio\+Interface Class Reference}
+\label{classAudioInterface}\index{Audio\+Interface@{Audio\+Interface}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAudioInterface_a8382ef84a72aca3eb6cc2dcc43c1f1c0}{Audio\+Interface} (char $\ast$device\+Name, unsigned int sampling\+Rate, int channels, snd\+\_\+pcm\+\_\+stream\+\_\+t direction)
+\item 
+virtual \hyperlink{classAudioInterface_a985204462880bbacf04c04ce538d9963}{$\sim$\+Audio\+Interface} ()
+\item 
+void \hyperlink{classAudioInterface_af879263299342c9c0c52a2deb906f40e}{open} ()
+\item 
+void \hyperlink{classAudioInterface_a6d361612b36de63f5ae9b212c3da09ed}{close} ()
+\item 
+int \hyperlink{classAudioInterface_aaa97099be297b43bd20e937af70ebbe3}{read} (char $\ast$buffer)
+\item 
+void \hyperlink{classAudioInterface_a2aa1641dc149354dfc18f1d5edd8ce0f}{write} (char $\ast$buffer, int buffer\+Length)
+\item 
+int \hyperlink{classAudioInterface_ae571b3fd9d14edefbd54e101eceeab89}{get\+Required\+Buffer\+Size} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAudioInterface_a8382ef84a72aca3eb6cc2dcc43c1f1c0}{\index{Audio\+Interface@{Audio\+Interface}!Audio\+Interface@{Audio\+Interface}}
+\index{Audio\+Interface@{Audio\+Interface}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{Audio\+Interface}]{\setlength{\rightskip}{0pt plus 5cm}Audio\+Interface\+::\+Audio\+Interface (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{device\+Name, }
+\item[{unsigned int}]{sampling\+Rate, }
+\item[{int}]{channels, }
+\item[{snd\+\_\+pcm\+\_\+stream\+\_\+t}]{direction}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_a8382ef84a72aca3eb6cc2dcc43c1f1c0}
+This is the constructor for the class. It will instantiate a new instance of the class. 
+\begin{DoxyParams}{Parameters}
+{\em device\+Name} & This is the name of the device. A typical name might be \char`\"{}plughw\+:1\char`\"{} \\
+\hline
+{\em sampling\+Rate} & This is the sampling rate for the audio sampls. Typical rates are 11000, 22050, and 44100. \\
+\hline
+{\em channels} & This is the number of channels. Typically this is 1 or 2. \\
+\hline
+{\em direction} & This is the direction. It is either S\+N\+D\+\_\+\+P\+C\+M\+\_\+\+S\+T\+R\+E\+A\+M\+\_\+\+C\+A\+P\+T\+U\+R\+E or S\+N\+D\+\_\+\+P\+C\+M\+\_\+\+S\+T\+R\+E\+A\+M\+\_\+\+P\+L\+A\+Y\+B\+A\+C\+K \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAudioInterface_a985204462880bbacf04c04ce538d9963}{\index{Audio\+Interface@{Audio\+Interface}!````~Audio\+Interface@{$\sim$\+Audio\+Interface}}
+\index{````~Audio\+Interface@{$\sim$\+Audio\+Interface}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{$\sim$\+Audio\+Interface}]{\setlength{\rightskip}{0pt plus 5cm}Audio\+Interface\+::$\sim$\+Audio\+Interface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAudioInterface_a985204462880bbacf04c04ce538d9963}
+This is the destructor. It will clear all allocated space. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classAudioInterface_a6d361612b36de63f5ae9b212c3da09ed}{\index{Audio\+Interface@{Audio\+Interface}!close@{close}}
+\index{close@{close}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Interface\+::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_a6d361612b36de63f5ae9b212c3da09ed}
+This method will close the given device so it is no longer accessible. \hypertarget{classAudioInterface_ae571b3fd9d14edefbd54e101eceeab89}{\index{Audio\+Interface@{Audio\+Interface}!get\+Required\+Buffer\+Size@{get\+Required\+Buffer\+Size}}
+\index{get\+Required\+Buffer\+Size@{get\+Required\+Buffer\+Size}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{get\+Required\+Buffer\+Size}]{\setlength{\rightskip}{0pt plus 5cm}int Audio\+Interface\+::get\+Required\+Buffer\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_ae571b3fd9d14edefbd54e101eceeab89}
+This method will determine, based upon the size of each frame and the number of frames between interrupts the required size of the buffer that is to store the data. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classAudioInterface_af879263299342c9c0c52a2deb906f40e}{\index{Audio\+Interface@{Audio\+Interface}!open@{open}}
+\index{open@{open}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Interface\+::open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_af879263299342c9c0c52a2deb906f40e}
+This method will open the given device so that it can be accessed. \hypertarget{classAudioInterface_aaa97099be297b43bd20e937af70ebbe3}{\index{Audio\+Interface@{Audio\+Interface}!read@{read}}
+\index{read@{read}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}int Audio\+Interface\+::read (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_aaa97099be297b43bd20e937af70ebbe3}
+This method will read data from the given sound device into the buffer. 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & This is a pointer to a buffer that is to be written into. The calee is responsible for providing this buffer. The buffer must be the isze calculated by the get\+Required\+Bufferisze() method. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The return will be the number of bytes written into the buffer. 
+\end{DoxyReturn}
+\hypertarget{classAudioInterface_a2aa1641dc149354dfc18f1d5edd8ce0f}{\index{Audio\+Interface@{Audio\+Interface}!write@{write}}
+\index{write@{write}!Audio\+Interface@{Audio\+Interface}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void Audio\+Interface\+::write (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{int}]{buffer\+Length}
+\end{DoxyParamCaption}
+)}}\label{classAudioInterface_a2aa1641dc149354dfc18f1d5edd8ce0f}
+This method will write data to the soundcard for playback. 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & This is the buffer that is to be written. It must be of size get\+Required\+Bufferisze(). \\
+\hline
+{\em buffer\+Length} & This is the number of valid entries in the buffer. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Audio\+Interface.\+h\item 
+Audio\+Interface.\+cpp\end{DoxyCompactItemize}

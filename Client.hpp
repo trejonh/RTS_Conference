@@ -1,8 +1,8 @@
-/*
+/**
  * Client.hpp
  *
  *  Created on: May 8, 2017
- *      Author: se3910
+ *  @author TreJon House <houset@msoe.edu>
  */
 
 #ifndef CLIENT_HPP_
@@ -11,9 +11,10 @@
 #include <unistd.h>
 #include <thread>
 #include <pthread.h>
+#include <mutex>
 using namespace std;
 /**
- * @description Client will send live audio and video data to server
+ * Client can send live audio and video data to a specified server
  */
 class Client{
 public:
@@ -33,10 +34,13 @@ private:
 	int secondsToCapture;
 	thread *audioThread;
 	thread *videoThread;
-	char* copiedBuffer;
+	mutex *bufferMutex;
+	char *audioBuffer;
+	int audioBufferSize;
 	void CaptureAudio();
 	void CaptureVideo();
 	void Calculate();
+	void SetScheduling(thread &th, int policy, int priority);
 };
 
 #endif /* CLIENT_HPP_ */

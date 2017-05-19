@@ -1,8 +1,8 @@
-/*
+/**
  * Client.cpp
  *
  *  Created on: May 11, 2017
- *      Author: se3910
+ *  @author TreJon House <houset@msoe.edu>
  */
 #include "Client.hpp"
 #include "AudioInterface.h"
@@ -19,9 +19,21 @@
 #include <thread>
 #include <pthread.h>
 #include <opencv2/opencv.hpp>
+#include <ctime>
+#include <cstdlib>
+#include <mutex>
+#include <math.h>
 
 using namespace std;
 using namespace cv;
+
+/**
+ * Creates a client object to be used for audio/video streaming
+ * @param audioDevice - name of audio device to record from
+ * @param serverAddr - the server address
+ * @param audioPort - the port the server will listen for audio on
+ * @param videoPort - the port the server will listen for video on
+ **/
 Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort){
 	isPaused = true;
 	run = false;
@@ -31,22 +43,48 @@ Client::Client(char* audioDevice, char* serverAddr,int audioPort, int videoPort)
 	this->videoPort = videoPort;
 	this->secondsToCapture = secondsToCapture;
 }
-Client::~Client(){}
+
+/**
+ *Stops threads in case not previously stopped and cleans up
+ **/
+Client::~Client(){
+	run = false;
+}
+
+/**
+ * Spawns up a video and audio thread and starts streaming to the server
+ **/
 void Client::Stream(){
 	run = true;
 	isPaused = false;
 	videoThread = new thread(&Client::CaptureVideo, this);
-	//audioThread = new thread(&Client::CaptureAudio, this);
+	audioThread = new thread(&Client::CaptureAudio, this);
 }
+
+/**
+ * Stops streaming video and audio, NOTE: Cannot be resumed must call Stream()
+ **/
 void Client::Stop(){
 	run = false;
 }
+
+/**
+ * Pauses the stream
+ **/
 void Client::Pause(){
 	isPaused = true;
 }
+
+/**
+ *Resumes the stream
+ **/
 void Client::Resume(){
 	isPaused = false;
 }
+
+/**
+ * Sets up a socket to deliver audio from the set audio device while spawning up a low priority thread to calculate the average amplitude
+ **/
 void Client::CaptureAudio(){
 	/*************Socket Setup***********/
 		int sockfd, portno, n;
@@ -80,12 +118,10 @@ void Client::CaptureAudio(){
 		/************************************/
 
 	/*************Audio Setup************/
-	char *buffer;
-	int bufferSize;
 	AudioInterface in(audioDevice, SAMPLING_RATE, NUMBER_OF_CHANNELS, SND_PCM_STREAM_CAPTURE);
 	in.open();
-	bufferSize = in.getRequiredBufferSize();
-	buffer = (char*)malloc(bufferSize);
+	audioBufferSize = in.getRequiredBufferSize();
+	audioBuffer = (char*)malloc(audioBufferSize);
 	/************************************/
 	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
 	        cout<<"ERROR connecting"<<endl;
@@ -96,15 +132,19 @@ void Client::CaptureAudio(){
 	    }
 
 	//int bytesToCapture = SAMPLING_RATE * secondsToCapture * NUMBER_OF_CHANNELS * BYTES_PER_SAMPLE;
+	bufferMutex = new mutex();
+	thread calculationThread(&Client::Calculate,this);
+	SetScheduling(calculationThread, SCHED_RR, 2);
 	while(run){
 		if(isPaused)
 			continue;
-		memset(buffer, 0, bufferSize);
+		bufferMutex->lock();
+		memset(audioBuffer, 0, audioBufferSize);
 
 		// Capture from the soundcard
-		in.read(buffer);
-		memcpy(copiedBuffer,buffer,bufferSize);
-		n = write(sockfd,buffer,bufferSize);
+		in.read(audioBuffer);
+		n = write(sockfd,audioBuffer,audioBufferSize);
+		bufferMutex->unlock();
 		if(n<0){
 			cout<<"error writing to socket\n";
 		}
@@ -120,15 +160,42 @@ void Client::CaptureAudio(){
 	//delete(in);
 }
 
+/**
+ * Prints the average amplitude of each sample once per second
+ **/
 void Client::Calculate(){
 	/*
 	 * by dividing it by 32768. This value will then be squared, and the one second average will be
 		calculated. The output will be this value after sending it through this formula: dB = 20 * log10(one second
 		average). This will be printed out to the console once per second
 	 * */
-	int val;
+	double totalSamplesInMin = 0;
+	long count = 0;
+	clock_t startTime = clock();
+	double secondsToDelay = 1.0;
+	while(run){
+		if((clock() - startTime) / CLOCKS_PER_SEC < secondsToDelay){
+			bufferMutex->lock();
+			for(int i = 0; i<audioBufferSize; i++){
+				totalSamplesInMin += audioBuffer[i]/32768;
+				count++;
+			}
+			bufferMutex->unlock();
+		}else{
+			double avg = totalSamplesInMin/count;
+			double val = log10(avg) * 20;
+			cout << "The average amplitude of samples sent each second "<<val<<endl;
+			totalSamplesInMin = 0;
+			count = 0;
+			startTime = clock();
+		}
+
+	}
 }
 
+/**
+ * Sets up a socket to send video frames captured from the first attached usb camera device with a 800x600 resolution
+ **/
 void Client::CaptureVideo(){
 
 	/*************Socket Setup***********/
@@ -193,3 +260,17 @@ void Client::CaptureVideo(){
 	}
 	    //delete(capture);
 }
+
+/**
+ * Set the thread's priority
+ * @param th - the thread who's priority will be set
+ * @param policy - the scheduling policy to use
+ * @param priority - the priority of the thread
+ **/
+void Client::SetScheduling(thread &th, int policy, int priority) {
+        sched_param sch_params;
+        sch_params.sched_priority = priority;
+        if(pthread_setschedparam(th.native_handle(), policy, &sch_params)) {
+            cerr << "Failed to set Thread scheduling : " << strerror(errno) << endl;
+        }
+    }
