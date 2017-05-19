@@ -110,11 +110,11 @@ void Client::CaptureAudio(){
 		         server->h_length);
 		    serv_addr.sin_port = htons(portno);
 
-	        if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+	        /*if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
 	        {
 	            printf("\nConnection Failed \n");
 	            run = false;
-	        }
+	        }*/
 		/************************************/
 
 	/*************Audio Setup************/
@@ -123,8 +123,8 @@ void Client::CaptureAudio(){
 	audioBufferSize = in.getRequiredBufferSize();
 	audioBuffer = (char*)malloc(audioBufferSize);
 	/************************************/
-	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
-	        cout<<"ERROR connecting"<<endl;
+	if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+	        cout<<"ERROR connecting to audio"<<endl;
 			in.close();
 			if(sockfd >=0)
 				close(sockfd);
